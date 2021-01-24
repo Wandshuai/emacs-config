@@ -59,3 +59,21 @@
 
 (map! (:leader
        (:desc "Expand region" :n "=" #'er/expand-region)))
+
+(after! org
+(setq org-capture-templates nil)
+(setq org-directory "~/org")
+(setq org-default-notes-file "notes")
+(setq org-capture-templates
+        '(("t" "Personal todo" entry
+           (file+headline  "todo" "Inbox")
+           "* [ ] %?\n%i\n%a" :prepend t)
+          ("n" "Personal notes" entry
+           (file+headline  "notes" "Inbox")
+           "* %u %?\n%i\n%a" :prepend t)
+          ("f" "Fleeting notes" entry
+           (file+headline  "fleeting" "Inbox")
+           "* %U %?\n%i\n%a" :prepend t)
+          ("l" "literature notes" entry
+           (file+headline "literature" "Inbox")
+           "* %U %?\n%i\n%a" :prepend t))))
